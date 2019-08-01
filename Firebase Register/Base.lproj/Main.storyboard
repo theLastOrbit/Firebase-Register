@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c9t-IP-Vh6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="inu-sA-kzu">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -67,6 +67,7 @@
                                 </state>
                                 <connections>
                                     <action selector="createAccountButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sbM-n7-sOO"/>
+                                    <segue destination="vYE-XM-uxv" kind="show" id="HmA-QK-6AD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -93,6 +94,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GJF-D7-lHR"/>
                     <connections>
                         <outlet property="createAccountButton" destination="FJj-8N-hI4" id="Toj-VY-y7L"/>
                         <outlet property="orLabel" destination="C9J-uL-FaL" id="fMj-W3-9UW"/>
@@ -104,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-401" y="-62"/>
+            <point key="canvasLocation" x="508.69565217391306" y="-62.276785714285708"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="3j6-a6-EE5">
@@ -122,6 +124,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="dissmissAction:" destination="vYE-XM-uxv" eventType="touchUpInside" id="gXs-kB-wSa"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRq-qr-mVa">
                                 <rect key="frame" x="20" y="64" width="60.5" height="20.5"/>
@@ -221,6 +226,7 @@
                                 <state key="normal" title="Sign In"/>
                                 <connections>
                                     <action selector="createAccountButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Dd-cn-g9l"/>
+                                    <segue destination="UlO-v0-Zcb" kind="show" id="lse-gX-Vtj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -265,7 +271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dR-HX-D2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="426" y="-402"/>
+            <point key="canvasLocation" x="1425" y="-62"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="4jW-FK-ajE">
@@ -344,6 +350,7 @@
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="createAccountButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KTX-0u-iNf"/>
+                                    <action selector="dissmissAction:" destination="UlO-v0-Zcb" eventType="touchUpInside" id="YMy-L0-0tW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTa-qa-lRC">
@@ -354,6 +361,9 @@
                                 <state key="normal" title="Forgot Password?">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="c9t-IP-Vh6" kind="show" id="R7h-pQ-th1"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -390,7 +400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Jn-bI-heN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="426" y="256"/>
+            <point key="canvasLocation" x="2329" y="-62"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="UyI-FC-T2R">
@@ -414,6 +424,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="dissmissAction:" destination="c9t-IP-Vh6" eventType="touchUpInside" id="NOf-fH-DiM"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWe-bV-FBW">
                                 <rect key="frame" x="20" y="134.5" width="374" height="50"/>
@@ -442,7 +455,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="hDn-ek-icc"/>
                                 </constraints>
-                                <state key="normal" title="Sign In">
+                                <state key="normal" title="Reset Password">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -474,7 +487,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szl-4k-13T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1248" y="-62"/>
+            <point key="canvasLocation" x="3249" y="-62"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xdo-cu-q3R">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="inu-sA-kzu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Ov-zp-jWS">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="tgi-2U-ONB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dbV-xv-6fZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-401.44927536231887" y="-62.276785714285708"/>
         </scene>
     </scenes>
     <resources>
