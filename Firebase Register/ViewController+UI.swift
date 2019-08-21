@@ -41,7 +41,7 @@ extension ViewController {
     func setupTermsLabel() {
         
         let attributedTermsText = NSMutableAttributedString(string: "By clicking \"Create a new account\" you agree to our ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor(white: 0, alpha: 0.65)])
-        let attributedSubTermText = NSMutableAttributedString(string: "Terms and Service.", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor(white: 0, alpha: 0.65)])
+        let attributedSubTermText = NSMutableAttributedString(string: "Terms and Services.", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor(white: 0, alpha: 0.65)])
         
         attributedTermsText.append(attributedSubTermText)
         

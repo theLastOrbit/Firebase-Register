@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
+import ProgressHUD
 
 extension SignUpViewController {
     
@@ -23,6 +27,17 @@ extension SignUpViewController {
         
         avatar.layer.cornerRadius = 50
         avatar.clipsToBounds = true
+        avatar.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
+        avatar.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func presentPicker() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
     }
     
     func setupFullNameTextField() {
@@ -92,4 +107,87 @@ extension SignUpViewController {
         signInButton.setAttributedTitle(attributedText, for: UIControl.State.normal)
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true )
+    }
+    
+    func signUp() {
+        guard let imageSelected = self.image else {
+            ProgressHUD.showError("Please choose your profile image")
+            return
+        }
+        guard let fullName = self.fullNameTextField.text, !fullName.isEmpty else {
+            ProgressHUD.showError("Please enter your name")
+            return
+        }
+        guard let imageData = imageSelected.jpegData(compressionQuality: 0.5) else {
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (authDataResult, error) in
+            if error != nil {
+                ProgressHUD.showError(error!.localizedDescription)
+                return
+            }
+            
+            if let authData = authDataResult {
+                var dict: Dictionary<String, Any> = [
+                    "uid": authData.user.uid,
+                    "email": authData.user.email!,
+                    "name": self.fullNameTextField.text!,
+                    "profileImageURL": "",
+                    "status": "Welcome to Crisos!"
+                ]
+                
+                let storageRef = Storage.storage().reference(forURL: "gs://registerdemo-mdr.appspot.com")
+                
+                let storageProfileRef = storageRef.child("profilePic").child(authData.user.uid)
+                
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpg"
+                
+                storageProfileRef.putData(imageData, metadata: metadata, completion: { (stogareMetaData, error) in
+                    if error != nil {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    
+                    storageProfileRef.downloadURL(completion: { (url, err) in
+                        if let metaImageURL = url?.absoluteString {
+                            dict["profileImageURL"] = metaImageURL
+                            
+                            Database.database().reference().child("users")
+                                .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
+                                    if error == nil {
+                                        ProgressHUD.showSuccess("Account created, now you can Sign In")
+                                    }
+                                })
+                            
+                        }
+                    })
+                    
+                })
+                
+            }
+        }
+    }
+    
+}
+
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let imageEdited = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            avatar.image = imageEdited
+            image = imageEdited
+        }
+        
+        if let imageOriginal = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            avatar.image = imageOriginal
+            image = imageOriginal
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
 }

@@ -21,10 +21,11 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     
-
+    var image: UIImage? = nil 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupUI()
     }
     
@@ -44,5 +45,11 @@ class SignUpViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+        
+        self.view.endEditing(true)
+        self.signUp()
+        
+    }
     
 }
