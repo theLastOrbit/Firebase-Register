@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class SignUpViewController: UIViewController {
     
@@ -48,7 +49,13 @@ class SignUpViewController: UIViewController {
     @IBAction func signUpButtonTapped(_ sender: Any) {
         
         self.view.endEditing(true)
-        self.signUp()
+        self.signUp(onSuccess: {
+            
+//            TODO: - Sign up hoile eikhane main window te jabe
+            ProgressHUD.showSuccess(SUCCESS_SIGN_UP)
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
+        }
         
     }
     

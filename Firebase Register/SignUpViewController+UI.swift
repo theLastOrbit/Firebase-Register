@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseStorage
 import ProgressHUD
 
 extension SignUpViewController {
@@ -35,7 +32,7 @@ extension SignUpViewController {
     @objc func presentPicker() {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
+       // picker.allowsEditing = true
         picker.delegate = self
         self.present(picker, animated: true, completion: nil)
     }
@@ -111,64 +108,24 @@ extension SignUpViewController {
         self.view.endEditing(true )
     }
     
-    func signUp() {
+    func signUp(onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        
         guard let imageSelected = self.image else {
-            ProgressHUD.showError("Please choose your profile image")
+            ProgressHUD.showError(ERROR_EMPTY_PHOTO)
             return
         }
         guard let fullName = self.fullNameTextField.text, !fullName.isEmpty else {
-            ProgressHUD.showError("Please enter your name")
-            return
-        }
-        guard let imageData = imageSelected.jpegData(compressionQuality: 0.5) else {
+            ProgressHUD.showError(ERROR_EMPTY_NAME)
             return
         }
         
-        Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (authDataResult, error) in
-            if error != nil {
-                ProgressHUD.showError(error!.localizedDescription)
-                return
-            }
-            
-            if let authData = authDataResult {
-                var dict: Dictionary<String, Any> = [
-                    "uid": authData.user.uid,
-                    "email": authData.user.email!,
-                    "name": self.fullNameTextField.text!,
-                    "profileImageURL": "",
-                    "status": "Welcome to Crisos!"
-                ]
-                
-                let storageRef = Storage.storage().reference(forURL: "gs://registerdemo-mdr.appspot.com")
-                
-                let storageProfileRef = storageRef.child("profilePic").child(authData.user.uid)
-                
-                let metadata = StorageMetadata()
-                metadata.contentType = "image/jpg"
-                
-                storageProfileRef.putData(imageData, metadata: metadata, completion: { (stogareMetaData, error) in
-                    if error != nil {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    
-                    storageProfileRef.downloadURL(completion: { (url, err) in
-                        if let metaImageURL = url?.absoluteString {
-                            dict["profileImageURL"] = metaImageURL
-                            
-                            Database.database().reference().child("users")
-                                .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
-                                    if error == nil {
-                                        ProgressHUD.showSuccess("Account created, now you can Sign In")
-                                    }
-                                })
-                            
-                        }
-                    })
-                    
-                })
-                
-            }
+        ProgressHUD.show()
+        
+        Api.User.signUp(withName: self.fullNameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!, image: imageSelected, onSuccess: {
+            ProgressHUD.dismiss()
+            onSuccess()
+        }) { (errorMessage) in
+            onError(errorMessage)
         }
     }
     

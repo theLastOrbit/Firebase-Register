@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		253F112B230D9325003F29A0 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253F112A230D9325003F29A0 /* Api.swift */; };
+		253F112D230DAD31003F29A0 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253F112C230DAD31003F29A0 /* UserApi.swift */; };
+		254283D7230DBAB2000AF980 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254283D6230DBAB2000AF980 /* StorageService.swift */; };
+		254283D9230DC08D000AF980 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254283D8230DC08D000AF980 /* Ref.swift */; };
 		25AE449022F1D5FB00C4FF97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE448F22F1D5FB00C4FF97 /* AppDelegate.swift */; };
 		25AE449222F1D5FB00C4FF97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE449122F1D5FB00C4FF97 /* ViewController.swift */; };
 		25AE449522F1D5FB00C4FF97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25AE449322F1D5FB00C4FF97 /* Main.storyboard */; };
@@ -27,6 +30,9 @@
 /* Begin PBXFileReference section */
 		0F5FB43ECDF5CB762F3CC088 /* Pods_Firebase_Register.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_Register.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		253F112A230D9325003F29A0 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		253F112C230DAD31003F29A0 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		254283D6230DBAB2000AF980 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		254283D8230DC08D000AF980 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
 		25AE448C22F1D5FB00C4FF97 /* Firebase Register.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firebase Register.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25AE448F22F1D5FB00C4FF97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25AE449122F1D5FB00C4FF97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +87,9 @@
 			children = (
 				25AE448F22F1D5FB00C4FF97 /* AppDelegate.swift */,
 				253F112A230D9325003F29A0 /* Api.swift */,
+				253F112C230DAD31003F29A0 /* UserApi.swift */,
+				254283D8230DC08D000AF980 /* Ref.swift */,
+				254283D6230DBAB2000AF980 /* StorageService.swift */,
 				25AE449122F1D5FB00C4FF97 /* ViewController.swift */,
 				25AE44A322F1F9F400C4FF97 /* ViewController+UI.swift */,
 				25AE44A522F1FF1C00C4FF97 /* SignUpViewController.swift */,
@@ -232,15 +241,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				25CD668A22F2B648001F5659 /* ForgotPasswordViewController.swift in Sources */,
+				254283D7230DBAB2000AF980 /* StorageService.swift in Sources */,
 				25AE44A422F1F9F400C4FF97 /* ViewController+UI.swift in Sources */,
 				25AE449222F1D5FB00C4FF97 /* ViewController.swift in Sources */,
 				25CD668622F2AF94001F5659 /* SignInViewController.swift in Sources */,
 				25CD668C22F2B65C001F5659 /* ForgotPasswordViewController+UI.swift in Sources */,
+				254283D9230DC08D000AF980 /* Ref.swift in Sources */,
 				25AE44A622F1FF1C00C4FF97 /* SignUpViewController.swift in Sources */,
 				25CD668822F2B13C001F5659 /* SignInViewController+UI.swift in Sources */,
 				25AE449022F1D5FB00C4FF97 /* AppDelegate.swift in Sources */,
 				253F112B230D9325003F29A0 /* Api.swift in Sources */,
 				25AE44A822F20FE500C4FF97 /* SignUpViewController+UI.swift in Sources */,
+				253F112D230DAD31003F29A0 /* UserApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
