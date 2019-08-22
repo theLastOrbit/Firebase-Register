@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 extension SignInViewController {
     
@@ -69,5 +70,23 @@ extension SignInViewController {
         
         signUpButton.setAttributedTitle(attributedText, for: UIControl.State.normal)
     }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func signIn(onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+
+        ProgressHUD.show()
+        
+        Api.User.signIn(email: self.emailTextField.text!, password: self.passwordTextField.text!, onSuccess: {
+            ProgressHUD.dismiss()
+            onSuccess()
+        }) { (errorMessage) in
+            onError(errorMessage)
+        }
+        
+    }
+    
     
 }

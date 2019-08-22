@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class SignInViewController: UIViewController {
     
@@ -39,5 +40,16 @@ class SignInViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-
+    @IBAction func signInButtonTapped(_ sender: Any) {
+        
+        self.view.endEditing(true)
+        signIn(onSuccess: {
+//            TODO: - Sign up hoile eikhane main window te jabe
+            
+            ProgressHUD.showSuccess(SUCCESS_SIGN_IN)
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
+        }
+    }
+    
 }

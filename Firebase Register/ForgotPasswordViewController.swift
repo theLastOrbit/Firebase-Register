@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class ForgotPasswordViewController: UIViewController {
     
@@ -34,5 +35,16 @@ class ForgotPasswordViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func resetButtonTapped(_ sender: Any) {
+        
+        self.view.endEditing(true)
+        resetPassword(onSuccess: {
+            self.navigationController?.popViewController(animated: true)
+            ProgressHUD.showSuccess(SUCCESS_RESET_PASSWORD)
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
+        }
+         
+    }
     
 }

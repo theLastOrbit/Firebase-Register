@@ -14,6 +14,17 @@ import ProgressHUD
 
 class UserApi {
     
+    func signIn(email: String, password: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (authDataResult, error) in
+            if error != nil {
+                ProgressHUD.showError(error!.localizedDescription)
+                return
+            }
+            onSuccess()
+        }
+    }
+    
     func signUp(withName name:String, email: String, password: String, image: UIImage?, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         
         Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
@@ -47,7 +58,17 @@ class UserApi {
                 
             }
         }
-        
-        
     }
+    
+    func resetPassword(email: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if error != nil {
+                ProgressHUD.showError(error!.localizedDescription)
+                return
+            }
+            onSuccess()
+        }
+    }
+    
 }

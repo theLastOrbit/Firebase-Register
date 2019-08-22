@@ -32,7 +32,7 @@ extension SignUpViewController {
     @objc func presentPicker() {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
-       // picker.allowsEditing = true
+        picker.allowsEditing = true
         picker.delegate = self
         self.present(picker, animated: true, completion: nil)
     }
@@ -105,7 +105,7 @@ extension SignUpViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true )
+        self.view.endEditing(true)
     }
     
     func signUp(onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
@@ -121,7 +121,7 @@ extension SignUpViewController {
         
         ProgressHUD.show()
         
-        Api.User.signUp(withName: self.fullNameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!, image: imageSelected, onSuccess: {
+        Api.User.signUp(withName: fullName, email: self.emailTextField.text!, password: self.passwordTextField.text!, image: imageSelected, onSuccess: {
             ProgressHUD.dismiss()
             onSuccess()
         }) { (errorMessage) in

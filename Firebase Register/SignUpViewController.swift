@@ -50,8 +50,8 @@ class SignUpViewController: UIViewController {
         
         self.view.endEditing(true)
         self.signUp(onSuccess: {
-            
 //            TODO: - Sign up hoile eikhane main window te jabe
+            
             ProgressHUD.showSuccess(SUCCESS_SIGN_UP)
         }) { (errorMessage) in
             ProgressHUD.showError(errorMessage)

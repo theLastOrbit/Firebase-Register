@@ -341,6 +341,7 @@
                                 </state>
                                 <connections>
                                     <action selector="createAccountButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3hm-Fh-Nc2"/>
+                                    <action selector="signInButtonTapped:" destination="UlO-v0-Zcb" eventType="touchUpInside" id="gS3-b1-QXl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3Y-Lw-pWg">
@@ -461,6 +462,7 @@
                                 </state>
                                 <connections>
                                     <action selector="createAccountButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YjI-Df-BHs"/>
+                                    <action selector="resetButtonTapped:" destination="c9t-IP-Vh6" eventType="touchUpInside" id="c0K-fS-5iG"/>
                                 </connections>
                             </button>
                         </subviews>

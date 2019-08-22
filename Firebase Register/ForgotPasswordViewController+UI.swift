@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 extension ForgotPasswordViewController {
     
@@ -42,6 +43,27 @@ extension ForgotPasswordViewController {
         resetPasswordButton.layer.cornerRadius = 10
         resetPasswordButton.clipsToBounds = true
         resetPasswordButton.setTitleColor(.white, for: UIControl.State.normal)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func resetPassword(onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        
+        guard let email = self.emailTextField.text, !email.isEmpty else {
+            ProgressHUD.showError(ERROR_EMPTY_EMAIL_RESET)
+            return
+        }
+        
+        ProgressHUD.show()
+        
+        Api.User.resetPassword(email: email, onSuccess: {
+            ProgressHUD.dismiss()
+            onSuccess()
+        }) { (errorMessage) in
+            onError(errorMessage)
+        }
     }
     
 }

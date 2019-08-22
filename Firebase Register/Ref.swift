@@ -18,9 +18,14 @@ let EMAIL = "email"
 let NAME = "name"
 let PROFILE_IMAGE_URL = "profileImageURL"
 let STATUS = "status"
+
 let ERROR_EMPTY_PHOTO = "Please choose your profile image"
 let ERROR_EMPTY_NAME = "Please enter your name"
-let SUCCESS_SIGN_UP = "Account created, now you can Sign In"
+let ERROR_EMPTY_EMAIL_RESET = "Please enter email address to reset your password"
+let SUCCESS_SIGN_UP = "Account creation successful "
+let SUCCESS_SIGN_IN = "Sign in successful"
+let SUCCESS_RESET_PASSWORD = "We have just sent you a password reset email. Please check your inbox and follow the instruction to reset your password"
+
 
 class Ref {
     
